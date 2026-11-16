@@ -4,4 +4,4 @@
 
 ### Datenbank
 
-![DB Entwurf](schnittpunkt_2026-11-16.png)
+![DB Entwurf](./docs/schnittpunkt_2026-11-16.png)

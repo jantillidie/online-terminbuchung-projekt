@@ -1,0 +1,28 @@
+{
+  "name": "online-terminbuchung-projektauftrag",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "directories": {
+    "doc": "docs"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node --env-file=.env server.js",
+    "dev": "node --watch --env-file=.env server.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/jantillidie/online-terminbuchung-projekt.git"
+  },
+  "keywords": [],
+  "type": "module",
+  "bugs": {
+    "url": "https://github.com/jantillidie/online-terminbuchung-projekt/issues"
+  },
+  "homepage": "https://github.com/jantillidie/online-terminbuchung-projekt#readme",
+  "dependencies": {
+    "express": "^5.3.0",
+    "mysql2": "^3.24.6"
+  }
+}
