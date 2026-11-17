@@ -8,3 +8,12 @@ export function toHHMM(min) {
     const minutes = String(min % 60).padStart(2, '0')
     return `${hour}:${minutes}`
 }
+
+// Wochentag: getDay: 0 = So bis 6 = Sa > auf, zu = in Minuten, fehlender Tag = closed
+export const OEFFNUNG = {
+    2: [540, 1080],
+    3: [540, 1080],
+    4: [540, 1080],
+    5: [540, 1080],
+    6: [540, 840]
+}
