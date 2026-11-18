@@ -17,3 +17,16 @@ export const OEFFNUNG = {
     5: [540, 1080],
     6: [540, 840]
 }
+
+// belegt: [{ beginn, ende }] in Minuten seit Mitternacht
+export function freieSlots(dauer, [auf, zu], belegt) {
+    const slots = []
+
+    for (let slotBeginn = auf; slotBeginn + dauer <= zu; slotBeginn += 15) {
+        const slotEnde = slotBeginn + dauer
+        const kollidiert = belegt.some(termin => slotBeginn < termin.ende && slotEnde > termin.beginn)
+        if (!kollidiert) slots.push(slotBeginn)
+    }
+
+    return slots
+}
