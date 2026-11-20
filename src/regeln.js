@@ -30,3 +30,34 @@ export function freieSlots(dauer, [auf, zu], belegt) {
 
     return slots
 }
+
+export function pruefeRegeln(datum, uhrzeit, dauer, jetzt) {
+    const minuten = Number(uhrzeit.slice(3, 5))
+    if (![0, 15, 30, 45].includes(minuten)) {
+        return 'Termine beginnen nur zur vollen Viertelstunde.'
+    }
+
+    const tag = new Date(datum + 'T00:00:00')
+    const zeiten = OEFFNUNG[tag.getDay()]
+    if (!zeiten) {
+        return 'An diesem Tag ist der Salon geschlossen.'
+    }
+
+    const [auf, zu] = zeiten
+    const beginnMin = toMin(uhrzeit)
+    if (beginnMin < auf || beginnMin + dauer > zu) {
+        return 'Der Termin liegt außerhalb der Öffnungszeiten.'
+    }
+
+    const beginn = new Date(datum + 'T' + uhrzeit + ':00')
+    if (beginn.getTime() < jetzt.getTime() + 2 * 60 * 60 * 1000) {
+        return 'Termine bitte mindestens 2 Stunden im Voraus buchen.'
+    }
+    const spaeteste = new Date(jetzt)
+    spaeteste.setMonth(spaeteste.getMonth() + 3)
+    if (beginn > spaeteste) {
+        return 'Termine können höchstens 3 Monate im Voraus gebucht werden.'
+    }
+
+    return null
+}
